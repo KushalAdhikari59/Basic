@@ -277,80 +277,54 @@ body.light .about-text h2 { color: #111; }
   font-size: 15px;
 }
 
-/* Geometric Art */
 .about-visual {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-right: 16px;
 }
-
-.geo-art {
+.about-photo-wrap {
+  position: relative;
   width: 300px;
-  height: 300px;
+  height: 360px;
+  flex-shrink: 0;
+}
+
+.about-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
   border-radius: 20px;
-  background: var(--bg-3);
+  display: block;
+  position: relative;
+  z-index: 1;
   border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  position: relative;
+  filter: grayscale(10%);
+  transition: filter var(--transition);
+}
+.about-photo-wrap:hover .about-photo {
+  filter: grayscale(0%);
 }
 
-.geo-inner {
-  width: 200px;
-  height: 200px;
-  position: relative;
-}
-
-.geo-shape {
+.about-photo-glow {
   position: absolute;
-  border-radius: 4px;
+  inset: -2px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(200,255,0,0.25), transparent 60%);
+  z-index: 0;
+  pointer-events: none;
 }
-
-.s1 {
-  width: 90px; height: 90px;
-  background: linear-gradient(135deg, #555 0%, #222 100%);
-  top: 0; left: 0;
-  transform: rotate(10deg);
-  animation: geoSpin 8s linear infinite;
-}
-.s2 {
-  width: 90px; height: 90px;
-  background: linear-gradient(135deg, #333 0%, #555 100%);
-  top: 0; right: 0;
-  transform: rotate(-10deg);
-  animation: geoSpin 8s linear infinite reverse;
-}
-.s3 {
-  width: 90px; height: 90px;
-  background: linear-gradient(135deg, #444 0%, #222 100%);
-  bottom: 0; left: 0;
-  transform: rotate(-10deg);
-  animation: geoSpin 8s linear infinite reverse;
-}
-.s4 {
-  width: 90px; height: 90px;
-  background: linear-gradient(135deg, #222 0%, #444 100%);
-  bottom: 0; right: 0;
-  transform: rotate(10deg);
-  animation: geoSpin 8s linear infinite;
-}
-.geo-center {
+.about-photo-wrap::after {
+  content: '';
   position: absolute;
-  width: 40px; height: 40px;
-  background: var(--accent);
-  border-radius: 50%;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 0 30px rgba(200,255,0,0.5);
-  animation: pulse 2s infinite;
-}
-
-@keyframes geoSpin {
-  0% { transform: rotate(10deg) scale(1); }
-  50% { transform: rotate(20deg) scale(0.95); }
-  100% { transform: rotate(10deg) scale(1); }
+  bottom: -12px;
+  right: -12px;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  border: 1px solid rgba(200,255,0,0.2);
+  z-index: 0;
 }
 
 /* =============================================
@@ -784,7 +758,8 @@ body.light .footer-logo { color: #111; }
    ============================================= */
 @media (max-width: 900px) {
   .about-inner { grid-template-columns: 1fr; }
-  .about-visual { display: none; }
+  .about-visual { padding-right: 0; justify-content: flex-start; margin-bottom: 8px; }
+  .about-photo-wrap { width: 200px; height: 240px; }
   .skills-grid { grid-template-columns: 1fr; }
   .projects-grid { grid-template-columns: 1fr; }
   .contact-inner { grid-template-columns: 1fr; gap: 48px; }
