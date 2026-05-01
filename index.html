@@ -1,235 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="IT Student Portfolio. Building scalable web experiences with modern technologies.">
-    <meta name="author" content="Krishal Adhikari">
-    <!-- Page Keywords (less critical nowadays, but some use it) -->
-    <meta name="keywords" content="BCA, IT Student, Web Developer, Portfolio, Laravel, React, PHP, Projects">
-
-    <!-- Open Graph for social sharing -->
-    <meta property="og:title" content="Krishal Adhikari — IT Student & Developer">
-    <meta property="og:description" content="Building scalable web experiences with modern technologies.">
-    <meta property="og:image" content="path-to-your-image.png">
-    <meta property="og:url" content="https://yourportfolio.com">
-    <meta property="og:type" content="website">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Krishal Adhikari — IT Student & Developer">
-    <meta name="twitter:description" content="BCA Student">
-    <meta name="twitter:image" content="path-to-your-image.png">
-    <title>Krishal Adhikari — IT Student</title>
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <!-- Three.js Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KushalChandraAdhikari — Data Analyst Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
-
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="nav-logo"><i class="fa-solid fa-code"></i> Krishal Adhikari</a>
-            <div class="nav-right">
-                <button class="nav-toggle" id="navToggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#about" class="nav-link"><i class="fa-solid fa-user"></i> About</a></li>
-                <li><a href="#experience" class="nav-link"><i class="fa-solid fa-briefcase"></i> Experience</a></li>
-                <li><a href="#projects" class="nav-link"><i class="fa-solid fa-laptop-code"></i> Projects</a></li>
-                <li><a href="#contact" class="nav-link"><i class="fa-solid fa-envelope"></i> Contact</a></li>
-                <li class="theme-toggle" id="themeToggle" title="Toggle theme">
-                    <span class="sun-icon"><i class="fa-solid fa-sun"></i></span>
-                    <span class="moon-icon"><i class="fa-solid fa-moon"></i></span>
-                </li>
-            </ul>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">Kushal<span>Chandra</span>Adhikari</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#" class="theme-toggle" id="themeToggle"><i class="fas fa-sun"></i></a></li>
+    </ul>
+    <a href="#contact" class="btn-hire">Hire Me</a>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      Available for new opportunities
+    </div>
+    <h1 class="hero-title">
+      Turning data into<br />
+      meaning<span class="hero-accent">ful insights.</span>
+    </h1>
+    <p class="hero-sub">
+      I'm Kushal Adhikari, an aspiring Data Analyst skilled in transforming<br />
+      raw data into clear, actionable insights through analysis, visualization,<br />
+      and storytelling.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">View My Work <i class="fas fa-arrow-right"></i></a>
+      <a href="#contact" class="btn-ghost"><i class="fas fa-envelope"></i> Contact Me</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-inner">
+      <div class="about-text">
+        <h2>About Me</h2>
+        <p>Hello! I'm Kushal Adhikari, an aspiring Data Analyst with a strong passion for uncovering patterns and stories hidden within data. My journey into data began during my Computer Engineering studies, where I discovered how powerful the right analysis can be in driving real decisions.</p>
+        <p>I enjoy working with data end-to-end — from cleaning and processing raw datasets to building dashboards and visualizations that communicate findings clearly. I believe that data is only valuable when it's understood, and I strive to make that understanding accessible.</p>
+        <p>Outside of work, I enjoy following developments in AI and machine learning, exploring new datasets out of curiosity, and continuously expanding my analytical toolkit.</p>
+      </div>
+      <div class="about-visual">
+        <div class="geo-art">
+          <div class="geo-inner">
+            <div class="geo-shape s1"></div>
+            <div class="geo-shape s2"></div>
+            <div class="geo-shape s3"></div>
+            <div class="geo-shape s4"></div>
+            <div class="geo-center"></div>
+          </div>
         </div>
-    </nav>
+      </div>
+    </div>
+  </section>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero">
-        <div id="canvas-container"></div>
-        <div class="hero-content">
-            <div class="hero-text">
-                <span class="hero-badge"><i class="fa-solid fa-laptop-code"></i> BCA Student</span>
-                <h1 class="hero-title">Aspiring IT Professional & Developer</h1>
-                <p class="hero-subtitle">Engineering the Web of Tomorrow</p>
-                <p class="hero-description">I am an enthusiastic IT student specializing in full-stack development. I
-                    craft dynamic digital solutions using PHP and Python.</p>
-                <div class="hero-buttons">
-                    <a href="#projects" class="cta-button primary"><i class="fa-solid fa-folder-open"></i> Portfolio</a>
-                    <a href="#contact" class="cta-button secondary"><i class="fa-regular fa-paper-plane"></i> Hire
-                        Me</a>
-                </div>
-            </div>
-            <div class="hero-image-wrapper">
-                <div class="hero-image">
-                    <img src="krishal.jpg"
-                        alt="Student profile picture" class="profile-img">
-                </div>
-                <div class="blob-bg"></div>
-            </div>
+  <!-- EDUCATION -->
+  <section class="education" id="education">
+    <div class="section-header">
+      <h2>Education</h2>
+      <p>My academic journey that shaped my knowledge and passion for technology.</p>
+    </div>
+    <div class="edu-list">
+      <div class="edu-card">
+        <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
+        <div class="edu-info">
+          <h3>Secondary Education (SEE / 10th Grade)</h3>
+          <span>Greenland High School</span>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="section about">
-        <div class="section-container">
-            <h2 class="section-title"><i class="fa-solid fa-address-card"></i> About Me</h2>
-            <div class="about-content">
-                <p>Hello! I am an IT passionate student pursuing my Bachelor in Computer Applications (BCA). My journey
-                    in computing has shaped my belief in continuous learning. I focus on developing clean architectures
-                    and user-friendly interfaces, consistently pushing the boundaries of my skills through academic
-                    projects and self-taught explorations.</p>
-
-                <div class="about-grid">
-                    <div class="about-card">
-                        <div class="card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-                        <h3>Education</h3>
-                        <ul>
-                            <li>BCA — Ratna Rajyalaxmi Campus, Tribhuvan University (Ongoing)</li>
-                            <li>+2 — Southwestern State College</li>
-                            <li>10th Grade — Greenland High School</li>
-                        </ul>
-                    </div>
-                    <div class="about-card">
-                        <div class="card-icon"><i class="fa-solid fa-code-compare"></i></div>
-                        <h3>Technical Skills</h3>
-                        <ul>
-                            <li><strong>Frontend:</strong> HTML, CSS, JavaScript, React</li>
-                            <li><strong>Backend:</strong> PHP, Python</li>
-                            <li><strong>Database:</strong> SQL</li>
-                            <li><strong>Tools:</strong> Git, GitHub</li>
-                        </ul>
-                    </div>
-                    <div class="about-card">
-                        <div class="card-icon"><i class="fa-solid fa-lightbulb"></i></div>
-                        <h3>Interests</h3>
-                        <ul>
-                            <li>Systems Architecture</li>
-                            <li>Cloud Computing & DevOps</li>
-                            <li>Algorithmic Challenges</li>
-                            <li>Open Source Tech</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-icon"><i class="fas fa-flask"></i></div>
+        <div class="edu-info">
+          <h3>+2 / Higher Secondary (Science)</h3>
+          <span>Kathmandu Model College, Bagbazaar</span>
         </div>
-    </section>
-
-    <!-- Experience Section -->
-    <!-- <section id="experience" class="section experience">
-        <div class="section-container">
-            <h2 class="section-title"><i class="fa-solid fa-chart-line"></i> Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3><i class="fa-solid fa-code"></i> Java Backend Intern</h3>
-                        <p class="timeline-company">Tech Innovators Nepal</p>
-                        <p class="timeline-period">Jan 2024 — Present</p>
-                        <p class="timeline-description">Focused on building secure RESTful APIs using Java Spring Boot.
-                            Improved query execution times and optimized the backend algorithms for improved throughput.
-                        </p>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-icon"><i class="fas fa-microchip"></i></div>
+        <div class="edu-info">
+          <h3>Bachelor of Computer Engineering (BCT)</h3>
+          <span>Kathmandu Engineering College &nbsp;·&nbsp; Affiliated to Tribhuvan University (TU)</span>
         </div>
-    </section> -->
+      </div>
+    </div>
+  </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="section projects">
-        <div class="section-container">
-            <h2 class="section-title"><i class="fa-solid fa-diagram-project"></i> Academic & Personal Projects</h2>
-            <div class="projects-grid">
-                <a href="#" class="project-card">
-                    <div class="project-header">
-                        <h3><i class="fa-solid fa-user"></i> Personal Portfolio Website</h3>
-                        <span class="project-year">2026</span>
-                    </div>
-                    <p class="project-description">A personal portfolio website featuring a user-friendly.</p>
-                    <div class="project-tags">
-                        <span class="tag"><i class="fa-brands fa-html5"></i> HTML</span>
-                        <span class="tag"><i class="fa-brands fa-css3-alt"></i> CSS</span>
-                        <span class="tag"><i class="fa-brands fa-js"></i> JavaScript</span>
-                    </div>
-                </a>
-
-            </div>
+  <!-- SKILLS -->
+  <section class="skills" id="skills">
+    <div class="section-header">
+      <h2>Skills</h2>
+      <p>Technologies and tools I work with, organized by category.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <div class="skill-icon"><i class="fas fa-code"></i></div>
+          <h3>Languages & Web</h3>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section contact">
-        <div class="section-container">
-            <h2 class="section-title"><i class="fa-regular fa-paper-plane"></i> Get in Touch</h2>
-            <p class="contact-subtitle">I'm currently looking for internships and collaborative projects to expand my
-                skills in real-world scenarios. My inbox is always open!</p>
-
-            <div class="contact-wrapper">
-                <form class="contact-form" id="contactForm">
-                    <div class="input-group">
-                        <i class="fa-solid fa-user"></i>
-                        <input type="text" id="name" placeholder="Krishal Adhikari" required>
-                    </div>
-                    <div class="input-group">
-                        <i class="fa-solid fa-envelope"></i>
-                        <input type="email" id="email" placeholder="adkrishal@gmail.com" required>
-                    </div>
-                    <div class="input-group textarea-group">
-                        <i class="fa-solid fa-message"></i>
-                        <textarea id="message" placeholder="Your message" rows="6" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn"><i class="fa-solid fa-paper-plane"></i> Send
-                        Message</button>
-                    <p id="formStatus" class="form-status"></p>
-                </form>
-
-                <div class="contact-info">
-                    <div class="info-item">
-                        <h4><i class="fa-solid fa-envelope"></i> Email</h4>
-                        <a href="mailto:Krishal Adhikari.pariyar@example.com">adkrishal@gmail.com</a>
-                    </div>
-                    <div class="info-item">
-                        <h4><i class="fa-solid fa-phone"></i> Phone</h4>
-                        <a href="tel:+977-9761315556">+977 9761315556</a>
-                    </div>
-                    <div class="info-item">
-                        <h4><i class="fa-solid fa-location-dot"></i> Location</h4>
-                        <p>Kathmandu, Nepal</p>
-                    </div>
-                </div>
-            </div>
+        <p>Core programming and web development languages</p>
+        <div class="tags">
+          <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Python</span><span>C</span>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="social-links">
-                <a href="https://github.com/Krishal-07" target="_blank" rel="noopener"><i
-                        class="fa-brands fa-github fa-2x"></i></a>
-                <a href="https://www.linkedin.com/in/krishal-adhikari-353378325/" target="_blank" rel="noopener"><i
-                        class="fa-brands fa-linkedin fa-2x"></i></a>
-                <a href="https://x.com/Krishal0007" target="_blank" rel="noopener"><i
-                        class="fa-brands fa-twitter fa-2x"></i></a>
-            </div>
-            <p>&copy; 2026 Krishal Adhikari. Exploring tech, writing code.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <div class="skill-icon"><i class="fas fa-chart-bar"></i></div>
+          <h3>Data & Analytics</h3>
         </div>
-    </footer>
+        <p>Data manipulation, analysis and visualization tools</p>
+        <div class="tags">
+          <span>SQL</span><span>NumPy</span><span>Pandas</span><span>Data Cleaning</span><span>Power BI</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-header">
+          <div class="skill-icon"><i class="fas fa-wrench"></i></div>
+          <h3>Tools & Concepts</h3>
+        </div>
+        <p>Development tools and programming paradigms</p>
+        <div class="tags">
+          <span>Git</span><span>GitHub</span><span>OOP</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script src="script.js"></script>
+  <!-- PROJECTS -->
+  <section class="projects" id="projects">
+    <div class="projects-header">
+      <div>
+        <h2>Featured Projects</h2>
+        <p>A selection of data analysis projects that showcase my ability to extract insights and communicate findings effectively.</p>
+      </div>
+      <a href="https://github.com/kushaladhikari59" target="_blank" class="btn-ghost sm">View GitHub Profile</a>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card real-card">
+        <div class="project-img-wrap">
+          <img
+            src="https://raw.githubusercontent.com/KushalAdhikari59/PowerBI-Sales-dashboard/main/Sales_Dashboard.png"
+            alt="Power BI Sales Dashboard preview"
+            loading="lazy"
+          />
+        </div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span>Power BI</span><span>Excel</span><span>Data Viz</span>
+          </div>
+          <h3>Sales Dashboard (Power BI)</h3>
+          <p>Interactive dashboard analyzing sales performance by region, category, customer segment, and time. Covers KPIs like total sales, profit, quantity, and average sales.</p>
+          <div class="project-footer">
+            <a href="https://github.com/KushalAdhikari59/PowerBI-Sales-dashboard" target="_blank" class="btn-ghost sm">
+              <i class="fab fa-github"></i> View on GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="contact-inner">
+      <div class="contact-left">
+        <h2>Let's work together</h2>
+        <p>I'm currently open to data analyst roles, internships, and freelance projects. If you have data that needs to be explored or a story that needs to be told, I'd love to hear about it.</p>
+        <a href="mailto:kushaladhikari246@gmail.com" class="contact-email">
+          <i class="fas fa-envelope"></i> kushaladhikari246@gmail.com
+        </a>
+        <div class="social-links">
+          <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+          <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" title="Kaggle"><i class="fas fa-k"></i></a>
+          <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+      <form class="contact-form" id="contactForm">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" placeholder="John Doe" />
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="john@example.com" />
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Tell me about your project..."></textarea>
+        </div>
+        <button type="submit" class="btn-send"><i class="fas fa-paper-plane"></i> Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">KUSHAL<span>Chandra</span>Adhikari</span></div>
+    <p>© 2026 Kushal Chandra Adhikari. All rights reserved.</p>
+    <a href="#home" class="back-top">Back to top <i class="fas fa-arrow-up"></i></a>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
-
 </html>

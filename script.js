@@ -1,320 +1,98 @@
-// ============================================
-// THEME TOGGLE
-// ============================================
-const themeToggle = document.getElementById('themeToggle');
-const body = document.body;
+/* =============================================
+   KUSHAL.DEV — Portfolio Script
+   ============================================= */
 
-// Load saved theme preference
-const savedTheme = localStorage.getItem('theme') || 'dark';
-if (savedTheme === 'light') {
-    body.classList.add('light-mode');
-}
+document.addEventListener('DOMContentLoaded', () => {
 
-themeToggle.addEventListener('click', () => {
-    body.classList.toggle('light-mode');
-    const isLightMode = body.classList.contains('light-mode');
-    localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
-    
-    // Update three.js colors based on theme
-    if(particlesMaterial && linesMaterial) {
-        const color = isLightMode ? 0x2563eb : 0x3b82f6;
-        particlesMaterial.color.setHex(color);
-        linesMaterial.color.setHex(color);
-    }
-});
+  /* ── Navbar scroll style ── */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.style.background = window.scrollY > 20
+      ? 'rgba(10,10,10,0.95)'
+      : 'rgba(10,10,10,0.85)';
+  });
 
-// ============================================
-// MOBILE MENU TOGGLE
-// ============================================
-const navToggle = document.getElementById('navToggle');
-const navMenu = document.getElementById('navMenu');
-const navLinks = document.querySelectorAll('.nav-link');
-
-navToggle.addEventListener('click', () => {
-    navToggle.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
-
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        navToggle.classList.remove('active');
-        navMenu.classList.remove('active');
-    });
-});
-
-// ============================================
-// SMOOTH SCROLLING
-// ============================================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (href !== '#' && document.querySelector(href)) {
-            e.preventDefault();
-            const target = document.querySelector(href);
-            const offsetTop = target.offsetTop - 70;
-            window.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
-
-// ============================================
-// FORM SUBMISSION
-// ============================================
-const contactForm = document.getElementById('contactForm');
-const formStatus = document.getElementById('formStatus');
-
-contactForm.addEventListener('submit', (e) => {
+  /* ── Theme toggle ── */
+  const themeBtn = document.getElementById('themeToggle');
+  themeBtn.addEventListener('click', (e) => {
     e.preventDefault();
-
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const message = document.getElementById('message').value.trim();
-
-    // Validation
-    if (!name || !email || !message) {
-        showFormStatus('Please fill in all fields.', 'error');
-        return;
+    document.body.classList.toggle('light');
+    const icon = themeBtn.querySelector('i');
+    if (document.body.classList.contains('light')) {
+      icon.className = 'fas fa-moon';
+    } else {
+      icon.className = 'fas fa-sun';
     }
+  });
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        showFormStatus('Please enter a valid email address.', 'error');
-        return;
-    }
+  /* ── Hamburger menu ── */
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.querySelector('.nav-links');
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
 
-    if (message.length < 10) {
-        showFormStatus('Message must be at least 10 characters long.', 'error');
-        return;
-    }
+  /* ── Active nav link on scroll ── */
+  const sections = document.querySelectorAll('section[id], .hero[id]');
+  const links    = document.querySelectorAll('.nav-links a[href^="#"]');
 
-    // Simulate form submission
-    const submitBtn = contactForm.querySelector('button[type="submit"]');
-    const originalContent = submitBtn.innerHTML;
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Sending...';
-
-    setTimeout(() => {
-        showFormStatus('Message sent successfully! I will get back to you soon.', 'success');
-        contactForm.reset();
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = originalContent;
-    }, 1500);
-});
-
-function showFormStatus(message, type) {
-    formStatus.textContent = message;
-    formStatus.className = `form-status show ${type}`;
-
-    setTimeout(() => {
-        formStatus.classList.remove('show');
-    }, 5000);
-}
-
-// ============================================
-// SCROLL ANIMATIONS
-// ============================================
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
+  const observerNav = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
-            observer.unobserve(entry.target);
-        }
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
     });
-}, observerOptions);
+  }, { threshold: 0.4 });
 
-// Add animated class to elements dynamically
-document.querySelectorAll('.about-card, .project-card, .timeline-item').forEach((el, index) => {
-    el.classList.add('animated-element');
-    el.style.animationDelay = `${(index % 3) * 0.15}s`;
-    observer.observe(el);
+  sections.forEach(s => observerNav.observe(s));
+
+  /* ── Scroll reveal ── */
+  const revealEls = document.querySelectorAll(
+    '.edu-card, .skill-card, .project-card, .about-text, .about-visual, .contact-left, .contact-form, .projects-header'
+  );
+  revealEls.forEach(el => el.classList.add('reveal'));
+
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  /* ── Contact form ── */
+  const form = document.getElementById('contactForm');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('.btn-send');
+    const original = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+    btn.style.background = '#c8ff00';
+    btn.style.color = '#000';
+    setTimeout(() => {
+      btn.innerHTML = original;
+      btn.style.background = '';
+      btn.style.color = '';
+      form.reset();
+    }, 3000);
+  });
+
+  /* ── Smooth anchor scroll ── */
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
 });
-
-
-// ============================================
-// THREE.JS NETWORK ANIMATION
-// ============================================
-let scene, camera, renderer, particles, linesMesh;
-let particlesMaterial, linesMaterial; // Accessible globally for theme change
-
-function initThreeJS() {
-    const container = document.getElementById('canvas-container');
-    if(!container) return;
-
-    // SCENE
-    scene = new THREE.Scene();
-
-    // CAMERA
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
-    camera.position.z = 400;
-
-    // RENDERER
-    renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(container.clientWidth, container.clientHeight);
-    container.appendChild(renderer.domElement);
-
-    // Initial color based on theme
-    const isLightMode = document.body.classList.contains('light-mode');
-    const colorHex = isLightMode ? 0x2563eb : 0x3b82f6;
-
-    // PARTICLES / NODES
-    const particleCount = 150;
-    const geometry = new THREE.BufferGeometry();
-    const positions = new Float32Array(particleCount * 3);
-    const velocities = [];
-
-    for (let i = 0; i < particleCount; i++) {
-        positions[i * 3] = (Math.random() - 0.5) * 1000;
-        positions[i * 3 + 1] = (Math.random() - 0.5) * 1000;
-        positions[i * 3 + 2] = (Math.random() - 0.5) * 1000;
-        
-        velocities.push({
-            x: (Math.random() - 0.5) * 1,
-            y: (Math.random() - 0.5) * 1,
-            z: (Math.random() - 0.5) * 1
-        });
-    }
-
-    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-    particlesMaterial = new THREE.PointsMaterial({
-        color: colorHex,
-        size: 4,
-        blending: THREE.AdditiveBlending,
-        transparent: true,
-        sizeAttenuation: true
-    });
-
-    particles = new THREE.Points(geometry, particlesMaterial);
-    // Bind velocities to object for animate loop
-    particles.velocities = velocities;
-    scene.add(particles);
-
-    // LINES (Connecting Nodes)
-    linesMaterial = new THREE.LineBasicMaterial({
-        color: colorHex,
-        transparent: true,
-        opacity: 0.15
-    });
-    
-    // We update lines dynamically via geometry
-    const lineGeometry = new THREE.BufferGeometry();
-    linesMesh = new THREE.LineSegments(lineGeometry, linesMaterial);
-    scene.add(linesMesh);
-
-    window.addEventListener('resize', onWindowResize, false);
-    
-    // Initial calculation
-    updateLines();
-}
-
-function updateLines() {
-    const positions = particles.geometry.attributes.position.array;
-    const particleCount = positions.length / 3;
-    
-    // Arrays for lines
-    const linePositions = [];
-    
-    for (let i = 0; i < particleCount; i++) {
-        for (let j = i + 1; j < particleCount; j++) {
-            const dx = positions[i * 3] - positions[j * 3];
-            const dy = positions[i * 3 + 1] - positions[j * 3 + 1];
-            const dz = positions[i * 3 + 2] - positions[j * 3 + 2];
-            const dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
-            
-            // Connect nodes if they are close enough
-            if (dist < 180) {
-                linePositions.push(
-                    positions[i * 3], positions[i * 3 + 1], positions[i * 3 + 2],
-                    positions[j * 3], positions[j * 3 + 1], positions[j * 3 + 2]
-                );
-            }
-        }
-    }
-    
-    linesMesh.geometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
-    linesMesh.geometry.attributes.position.needsUpdate = true;
-}
-
-function onWindowResize() {
-    const container = document.getElementById('canvas-container');
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(container.clientWidth, container.clientHeight);
-}
-
-function animateThreeJS() {
-    requestAnimationFrame(animateThreeJS);
-    
-    if(particles) {
-        const positions = particles.geometry.attributes.position.array;
-        const vels = particles.velocities;
-        
-        for(let i = 0; i < positions.length / 3; i++) {
-            positions[i * 3] += vels[i].x;
-            positions[i * 3 + 1] += vels[i].y;
-            positions[i * 3 + 2] += vels[i].z;
-            
-            // Bounce off boundaries
-            if(Math.abs(positions[i * 3]) > 500) vels[i].x *= -1;
-            if(Math.abs(positions[i * 3 + 1]) > 500) vels[i].y *= -1;
-            if(Math.abs(positions[i * 3 + 2]) > 500) vels[i].z *= -1;
-        }
-        
-        particles.geometry.attributes.position.needsUpdate = true;
-        
-        // Slightly rotate point cloud for effect
-        particles.rotation.x += 0.0005;
-        particles.rotation.y += 0.001;
-        linesMesh.rotation.x = particles.rotation.x;
-        linesMesh.rotation.y = particles.rotation.y;
-        
-        updateLines();
-    }
-    
-    renderer.render(scene, camera);
-}
-
-
-// ============================================
-// INITIALIZE
-// ============================================
-window.onload = () => {
-    // Only init Three.js on non-mobile devices or if preferred
-    if(typeof THREE !== 'undefined') {
-        initThreeJS();
-        animateThreeJS();
-    }
-};
-
-const updateActiveLink = () => {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    let current = '';
-
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        if (window.scrollY >= sectionTop) {
-            current = section.getAttribute('id');
-        }
-    });
-
-    navLinks.forEach(link => {
-        link.style.color = '';
-        if (link.getAttribute('href') === `#${current}`) {
-            link.style.color = 'var(--accent)';
-        }
-    });
-};
-
-window.addEventListener('scroll', updateActiveLink);
-updateActiveLink();
